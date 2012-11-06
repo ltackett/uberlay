@@ -68,6 +68,7 @@
               $.ajax({
                 url: plugin.$el.attr('href'),
                 success: function(data) {
+                  // Fake a longer load with setTimeout
                   setTimeout(function(){
                     plugin.uberlayBox.html(data);
                     plugin.dataLoaded();

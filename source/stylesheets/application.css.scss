@@ -1,0 +1,47 @@
+@charset "utf-8";
+@import 'compass';
+@import 'animate';
+
+body {
+  background:  #d4d4d4 image-url("background.png");
+  font-family: sans-serif;
+}
+
+.uberlay {
+  background:     rgba(#000, 0.5);
+  position:       fixed;
+  top:            0;
+  right:          0;
+  bottom:         0;
+  left:           0;
+
+  .uberlay-box {
+    @include box-shadow(
+      rgba(#000, 0.6) 0 0 40px 5px,
+      rgba(#000, 0.6) 0 0 0    5px);
+    @include border-bottom-radius(5px);
+    background: #ddd;
+    text-align: left;
+    overflow:   hidden;
+    margin:     0 auto;
+    width:      500px;
+    height:     300px;
+    padding:    15px;
+
+    .scrollpane {
+      overflow: auto;
+      height:   100%;
+    }
+  }
+
+  &.loading .uberlay-box { background: #ddd image-url('loading.gif') center center no-repeat; }
+
+  &                       { display: none;  }
+  &.active                { display: block; }
+
+  &                       { @extend .fade-out; }
+  &.animate               { @extend .fade-in;  }
+
+  &         .uberlay-box  { @extend .outbound;  }
+  &.animate .uberlay-box  { @extend .inbound; }
+}

@@ -1,0 +1,153 @@
+@mixin transition-node($prefix, $offset, $rotation, $scale) {
+  $properties: perspective(400px) rotateX($rotation) translate(0, $offset) scale($scale);
+  @if $prefix == "none" { transform:        $properties }   @else { -#{$prefix}-transform:        $properties; }
+  @if $prefix == "non"  { transform-origin: 50% 0; }        @else { -#{$prefix}-transform-origin: 50% 0; }
+}
+
+$offset:   -50px;
+$rotation: -20deg;
+$scale:     0.90;
+$speed:     0.3s;
+
+.animated {
+    -webkit-animation-duration:  $speed;
+       -moz-animation-duration:  $speed;
+         -o-animation-duration:  $speed;
+            animation-duration:  $speed;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+
+// Inbound
+// ============================================================================
+
+@-webkit-keyframes inbound {
+  0%    { @include transition-node(webkit, $offset, $rotation, $scale); }
+  100%  { @include transition-node(webkit, 0px,     0deg,      1); }
+}
+
+@-moz-keyframes inbound {
+  0%    { @include transition-node(moz,    $offset, $rotation, $scale); }
+  100%  { @include transition-node(moz,    0px,     0deg,      1); }
+}
+
+@-o-keyframes inbound {
+  0%    { @include transition-node(o,      $offset, $rotation, $scale); }
+  100%  { @include transition-node(o,      0px,     0deg,      1); }
+}
+
+@keyframes inbound {
+  0%    { @include transition-node(none,   $offset, $rotation, $scale); }
+  100%  { @include transition-node(none,   0px,     0deg,      1); }
+}
+
+.inbound {
+  @extend .animated;
+  -webkit-backface-visibility: visible !important;
+  -moz-backface-visibility:    visible !important;
+  -o-backface-visibility:      visible !important;
+  backface-visibility:         visible !important;
+  -webkit-animation-name:      inbound;
+  -moz-animation-name:         inbound;
+  -o-animation-name:           inbound;
+  animation-name:              inbound;
+}
+
+// Outbound
+// ============================================================================
+
+@-webkit-keyframes outbound {
+  0%    { @include transition-node(webkit, 0px,     0deg,      1); }
+  100%  { @include transition-node(webkit, $offset, $rotation, $scale); }
+}
+
+@-moz-keyframes outbound {
+  0%    { @include transition-node(moz,    0px,     0deg,      1); }
+  100%  { @include transition-node(moz,    $offset, $rotation, $scale); }
+}
+
+@-o-keyframes outbound {
+  0%    { @include transition-node(o,      0px,     0deg,      1); }
+  100%  { @include transition-node(o,      $offset, $rotation, $scale); }
+}
+
+@keyframes outbound {
+  0%    { @include transition-node(none,   0px,     0deg,      1); }
+  100%  { @include transition-node(none,   $offset, $rotation, $scale); }
+}
+
+.outbound {
+  @extend .animated;
+  -webkit-backface-visibility: visible !important;
+  -moz-backface-visibility:    visible !important;
+  -o-backface-visibility:      visible !important;
+  backface-visibility:         visible !important;
+  -webkit-animation-name:      outbound;
+  -moz-animation-name:         outbound;
+  -o-animation-name:           outbound;
+  animation-name:              outbound;
+}
+
+// Fade In
+// ============================================================================
+
+@-webkit-keyframes fade-in {
+  0% { display: none; } 1%    { display: block; }
+  0% { opacity: 0 }     100%  { opacity: 1 }
+}
+
+@-moz-keyframes fade-in {
+  0% { display: none; } 1%    { display: block; }
+  0% { opacity: 0 }     100%  { opacity: 1 }
+}
+
+@-o-keyframes fade-in {
+  0% { display: none; } 1%    { display: block; }
+  0% { opacity: 0 }     100%  { opacity: 1 }
+}
+
+@keyframes fade-in {
+  0% { display: none; } 1%    { display: block; }
+  0% { opacity: 0 }     100%  { opacity: 1 }
+}
+
+.fade-in {
+  @extend .animated;
+  -webkit-animation-name: fade-in;
+  -moz-animation-name:    fade-in;
+  -o-animation-name:      fade-in;
+  animation-name:         fade-in;
+}
+
+// Fade Outout
+// ============================================================================
+
+@-webkit-keyframes fade-out {
+  0%, 99% { display: block; } 100%   { display: none; }
+  0% { opacity: 1 }      100%  { opacity: 0 }
+}
+
+@-moz-keyframes fade-out {
+  0%, 99% { display: block; } 100%   { display: none; }
+  0% { opacity: 1 }      100%  { opacity: 0 }
+}
+
+@-o-keyframes fade-out {
+  0%, 99% { display: block; } 100%   { display: none; }
+  0% { opacity: 1 }      100%  { opacity: 0 }
+}
+
+@keyframes fade-out {
+  0%, 99% { display: block; } 100%   { display: none; }
+  0% { opacity: 1 }      100%  { opacity: 0 }
+}
+
+.fade-out {
+  @extend .animated;
+  -webkit-animation-name: fade-out;
+  -moz-animation-name:    fade-out;
+  -o-animation-name:      fade-out;
+  animation-name:         fade-out;
+}

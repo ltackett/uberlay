@@ -9505,7 +9505,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
             // Otherwise, inject content via AJAX request
             else {
-              plugin.loadingData();
+              plugin.dataLoading();
               $.ajax({
                 url: plugin.$el.attr('href'),
                 success: function(data) {
@@ -9546,7 +9546,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
           }, plugin.options.delay);
         };
 
-        plugin.loadingData = function() {
+        plugin.dataLoading = function() {
           plugin.showUberlay();
           plugin.uberlayDiv.addClass("loading");
           plugin.$el.trigger("uberlay.dataLoading");
